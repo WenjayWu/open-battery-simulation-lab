@@ -1,0 +1,53 @@
+# Python project environments and caches
+**/.venv/
+**/.tools/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+**/.ipynb_checkpoints/
+*.py[cod]
+.python-version
+
+# IDE and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated simulation output
+**/results/runs/
+**/results/tmp/
+**/logs/
+*.log
+*.msh
+*.msh2
+*.vtk
+*.vtu
+*.pvtu
+*.xdmf
+*.h5
+*.hdf5
+*.foam
+
+# COMSOL binary/recovery artifacts
+*.mph
+*.mphbin
+*.mph.lock
+*.recovery
+
+# Packaging/build output
+build/
+dist/
+*.egg-info/
+
+# Jupyter execution scratch files
+*.nbconvert.ipynb
