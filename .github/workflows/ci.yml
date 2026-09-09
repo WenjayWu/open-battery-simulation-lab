@@ -1,0 +1,54 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pybamm:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/lfp-sei-plating
+    env:
+      MPLBACKEND: Agg
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@v7.0.0
+        with:
+          python-version-file: projects/lfp-sei-plating/.python-version
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          version: "0.11.14"
+          enable-cache: true
+          cache-dependency-glob: projects/lfp-sei-plating/uv.lock
+
+      - name: Restore frozen environment
+        run: uv sync --frozen
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Unit and integration tests
+        run: uv run pytest -q
+
+      - name: Short DFN smoke runs
+        run: |
+          uv run python -m lfp_lab.run --case baseline --quick --output-root .ci-output
+          uv run python -m lfp_lab.run --case sei_plating_demo --quick --output-root .ci-output
+
+      - name: Execute notebook from a clean kernel
+        run: >-
+          uv run jupyter nbconvert --to notebook --execute
+          notebooks/01_workbench_smoke.ipynb
+          --output-dir results/tmp --output 01_workbench_smoke.executed.ipynb

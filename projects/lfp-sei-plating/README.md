@@ -11,6 +11,14 @@ uv run python -c "import pybamm; print(pybamm.__version__)"
 
 锁定运行时为 Python 3.12、PyBaMM 26.6.2.0。依赖安装在本目录的 `.venv/`，该目录不会进入 Git。
 
+测试与质量检查：
+
+```powershell
+uv run ruff check .
+uv run pytest -q
+uv run jupyter nbconvert --to notebook --execute notebooks/01_workbench_smoke.ipynb --output-dir results/tmp
+```
+
 ## 运行
 
 ```powershell
@@ -27,3 +35,5 @@ uv run python -m lfp_lab.run --case sei_plating_demo
 - `baseline` 使用 Prada2013 LFP/石墨参数集，只做等温 DFN 电化学基线。
 - `sei_plating_demo` 会带上 `illustrative_unvalidated` 标签；其 SEI/析锂参数来自 OKane2022，仅用于展示方法和软件管线。
 - 在没有真实电芯参数标定和实验验证前，不应将退化示例用于定量寿命或安全预测。
+
+参数集的能力边界和引用信息以 [PyBaMM 26.6.2.0 参数集文档](https://docs.pybamm.org/en/v26.6.2.0/source/api/parameters/parameter_sets.html) 为准。

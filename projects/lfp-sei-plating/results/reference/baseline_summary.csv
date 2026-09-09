@@ -1,0 +1,2 @@
+cycle_index,start_time_h,end_time_h,duration_h,final_voltage_V,discharge_capacity_Ah,charge_capacity_Ah,loss_of_lithium_inventory_pct,sei_capacity_loss_Ah,plating_capacity_loss_Ah,max_plated_lithium_concentration_mol_m3
+1,0.0,3.419857414340121,3.419857414340121,3.5785575254714446,1.7641253340826009,1.8784789315436743,2.7995383788947947e-12,0.0,0.0,0.0

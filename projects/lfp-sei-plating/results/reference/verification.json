@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-09-09",
+  "runtime": {
+    "python": "3.12.10",
+    "pybamm": "26.6.2.0",
+    "uv": "0.11.14",
+    "platform": "Windows"
+  },
+  "environment_isolation": {
+    "system_python_imports_pybamm": false,
+    "project_venv_imports_pybamm": true,
+    "uv_sync_frozen_after_deleting_venv": "passed",
+    "locked_package_count": 124
+  },
+  "baseline": {
+    "config_hash": "6074293e05b6",
+    "completed_cycles": 1,
+    "completed_steps_per_cycle": [5],
+    "voltage_min_v": 2.49999999999988,
+    "voltage_max_v": 3.60000000000042,
+    "strictly_increasing_time": true,
+    "repeated_run_max_relative_error": 0.0
+  },
+  "sei_plating_demo": {
+    "confidence": "illustrative_unvalidated",
+    "config_hash": "a7c4378952fe",
+    "completed_cycles": 5,
+    "completed_steps_per_cycle": [5, 5, 5, 5, 5],
+    "borrowed_parameter_count": 16,
+    "borrowed_parameter_categories": ["sei", "lithium_plating"],
+    "repeated_run_max_relative_error": 0.0
+  },
+  "tests": {
+    "pytest": "7 passed",
+    "ruff": "passed",
+    "notebook_clean_kernel_execution": "passed",
+    "github_actions_linux": "passed",
+    "github_actions_run": 34362193805
+  }
+}

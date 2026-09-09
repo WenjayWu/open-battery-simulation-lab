@@ -7,7 +7,8 @@
 **/.mypy_cache/
 **/.ipynb_checkpoints/
 *.py[cod]
-.python-version
+**/.python-version
+!projects/lfp-sei-plating/.python-version
 
 # IDE and operating-system files
 .idea/
@@ -51,3 +52,4 @@ dist/
 
 # Jupyter execution scratch files
 *.nbconvert.ipynb
+.ci-output/
