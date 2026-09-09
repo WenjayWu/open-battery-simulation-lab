@@ -1,0 +1,46 @@
+[project]
+name = "lfp-lab"
+version = "0.1.0"
+description = "Reproducible LFP/graphite PyBaMM baselines and explicitly unvalidated degradation demos"
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "ipykernel>=6.30,<7",
+  "jupyterlab>=4.4,<5",
+  "matplotlib>=3.10,<4",
+  "pandas>=2.3,<3",
+  "pybamm[cite,plot]==26.6.2.0",
+]
+
+[dependency-groups]
+dev = [
+  "nbconvert>=7.16,<8",
+  "pytest>=8.4,<9",
+  "ruff>=0.12,<1",
+]
+
+[project.scripts]
+lfp-lab = "lfp_lab.run:main"
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lfp_lab"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+markers = [
+  "integration: runs a numerical model",
+  "slow: runs a full scientific acceptance case",
+]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

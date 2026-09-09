@@ -1,0 +1,27 @@
+{
+  "case": "baseline",
+  "confidence": "reference_parameter_set_unvalidated_for_local_cell",
+  "model": "DFN",
+  "parameter_set": "Prada2013",
+  "temperature_c": 25.0,
+  "initial_soc": 0.95,
+  "experiment": [
+    "Discharge at 1C until 2.5 V",
+    "Rest for 30 minutes",
+    "Charge at C/2 until 3.6 V",
+    "Hold at 3.6 V until C/20",
+    "Rest for 30 minutes"
+  ],
+  "period": "30 seconds",
+  "solver": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "mesh_points": {
+    "x_n": 16,
+    "x_s": 8,
+    "x_p": 16,
+    "r_n": 16,
+    "r_p": 16
+  }
+}
