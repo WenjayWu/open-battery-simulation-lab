@@ -20,6 +20,8 @@ uv run python -m lfp_lab.run --case sei_plating_demo
 
 每次运行会在 `results/runs/<case>/` 下创建独立目录，包含 manifest、时间序列、逐循环摘要、图表和日志。该目录默认不进入 Git。
 
+退化示例的参数借用边界记录在 [`configs/sei_plating_parameter_provenance.json`](configs/sei_plating_parameter_provenance.json)。当前锁定版本中，所选模型直接或间接需要 16 项 SEI/析锂专用参数；代码会先验证这份白名单并预处理模型。如模型还要求任何未批准参数，运行会立即失败并在根目录 `STATUS.md` 追加阻塞记录。
+
 ## 科学边界
 
 - `baseline` 使用 Prada2013 LFP/石墨参数集，只做等温 DFN 电化学基线。

@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "pybamm_version": "26.6.2.0",
+  "base_parameter_set": "Prada2013",
+  "source_parameter_set": "OKane2022",
+  "confidence": "illustrative_unvalidated",
+  "selection_method": "Parameters directly referenced by the selected model options plus transitive dependencies introduced by parameter functions during process_model.",
+  "allowed_categories": [
+    "sei",
+    "lithium_plating"
+  ],
+  "parameters": [
+    {
+      "name": "Bulk solvent concentration [mol.m-3]",
+      "category": "sei",
+      "dependency": "direct"
+    },
+    {
+      "name": "Dead lithium decay constant [s-1]",
+      "category": "lithium_plating",
+      "dependency": "transitive_function"
+    },
+    {
+      "name": "Dead lithium decay rate [s-1]",
+      "category": "lithium_plating",
+      "dependency": "direct"
+    },
+    {
+      "name": "Exchange-current density for plating [A.m-2]",
+      "category": "lithium_plating",
+      "dependency": "direct"
+    },
+    {
+      "name": "Exchange-current density for stripping [A.m-2]",
+      "category": "lithium_plating",
+      "dependency": "direct"
+    },
+    {
+      "name": "Initial SEI thickness [m]",
+      "category": "sei",
+      "dependency": "direct"
+    },
+    {
+      "name": "Initial plated lithium concentration [mol.m-3]",
+      "category": "lithium_plating",
+      "dependency": "direct"
+    },
+    {
+      "name": "Lithium metal partial molar volume [m3.mol-1]",
+      "category": "lithium_plating",
+      "dependency": "direct"
+    },
+    {
+      "name": "Lithium plating kinetic rate constant [m.s-1]",
+      "category": "lithium_plating",
+      "dependency": "transitive_function"
+    },
+    {
+      "name": "Lithium plating transfer coefficient",
+      "category": "lithium_plating",
+      "dependency": "direct"
+    },
+    {
+      "name": "Ratio of lithium moles to SEI moles",
+      "category": "sei",
+      "dependency": "direct"
+    },
+    {
+      "name": "SEI growth activation energy [J.mol-1]",
+      "category": "sei",
+      "dependency": "direct"
+    },
+    {
+      "name": "SEI partial molar volume [m3.mol-1]",
+      "category": "sei",
+      "dependency": "direct"
+    },
+    {
+      "name": "SEI resistivity [Ohm.m]",
+      "category": "sei",
+      "dependency": "direct"
+    },
+    {
+      "name": "SEI solvent diffusivity [m2.s-1]",
+      "category": "sei",
+      "dependency": "direct"
+    },
+    {
+      "name": "Typical plated lithium concentration [mol.m-3]",
+      "category": "lithium_plating",
+      "dependency": "transitive_function"
+    }
+  ]
+}

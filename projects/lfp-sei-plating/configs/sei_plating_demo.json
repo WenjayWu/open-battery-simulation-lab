@@ -1,0 +1,36 @@
+{
+  "case": "sei_plating_demo",
+  "confidence": "illustrative_unvalidated",
+  "model": "DFN",
+  "body_parameter_set": "Prada2013",
+  "side_reaction_parameter_set": "OKane2022",
+  "temperature_c": 10.0,
+  "initial_soc": 0.1,
+  "cycles": 5,
+  "experiment": [
+    "Charge at 2C until 3.6 V",
+    "Hold at 3.6 V until C/20",
+    "Rest for 10 minutes",
+    "Discharge at 1C until 2.5 V",
+    "Rest for 10 minutes"
+  ],
+  "period": "2 minutes",
+  "model_options": {
+    "thermal": "isothermal",
+    "SEI": "solvent-diffusion limited",
+    "SEI porosity change": "true",
+    "lithium plating": "partially reversible",
+    "lithium plating porosity change": "true"
+  },
+  "solver": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "mesh_points": {
+    "x_n": 16,
+    "x_s": 8,
+    "x_p": 16,
+    "r_n": 16,
+    "r_p": 16
+  }
+}

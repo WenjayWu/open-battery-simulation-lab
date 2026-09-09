@@ -91,6 +91,15 @@ def _maximum(cycle: pybamm.Solution, variable_name: str) -> float:
     return float(np.nanmax(values)) if values is not None else float("nan")
 
 
+def _integrated_capacity(cycle: pybamm.Solution, *, discharge: bool) -> float:
+    """Integrate one cycle's discharge or charge current into positive ampere-hours."""
+    current = _entries(cycle, "Current [A]")
+    if current is None:
+        return float("nan")
+    signed_current = np.maximum(current, 0) if discharge else np.maximum(-current, 0)
+    return float(np.trapezoid(signed_current, np.asarray(cycle.t, dtype=float)) / 3600)
+
+
 def solution_summary(solution: pybamm.Solution) -> pd.DataFrame:
     """Create one compact row per experiment cycle."""
     rows: list[dict[str, float | int]] = []
@@ -104,8 +113,8 @@ def solution_summary(solution: pybamm.Solution) -> pd.DataFrame:
                 "end_time_h": float(cycle_time[-1] / 3600),
                 "duration_h": float((cycle_time[-1] - cycle_time[0]) / 3600),
                 "final_voltage_V": _final(cycle, "Voltage [V]"),
-                "discharge_capacity_Ah": _maximum(cycle, "Discharge capacity [A.h]"),
-                "charge_capacity_Ah": _maximum(cycle, "Charge capacity [A.h]"),
+                "discharge_capacity_Ah": _integrated_capacity(cycle, discharge=True),
+                "charge_capacity_Ah": _integrated_capacity(cycle, discharge=False),
                 "loss_of_lithium_inventory_pct": _final(
                     cycle, "Loss of lithium inventory [%]"
                 ),
@@ -131,7 +140,7 @@ def _make_output_dir(case: CaseDefinition, output_root: Path | None) -> Path:
     return output_dir
 
 
-def _plot(timeseries: pd.DataFrame, output_dir: Path, confidence: str) -> None:
+def _plot(timeseries: pd.DataFrame, output_dir: Path, confidence: str) -> list[str]:
     fig, axes = plt.subplots(3, 1, figsize=(10, 9), sharex=True, constrained_layout=True)
     axes[0].plot(timeseries["time_h"], timeseries["voltage_V"], color="#1f77b4")
     axes[0].set_ylabel("Voltage / V")
@@ -157,6 +166,37 @@ def _plot(timeseries: pd.DataFrame, output_dir: Path, confidence: str) -> None:
         )
     fig.savefig(output_dir / "overview.png", dpi=160)
     plt.close(fig)
+    artifacts = ["overview.png"]
+
+    degradation_columns = [
+        ("sei_capacity_loss_Ah", "SEI capacity loss / Ah"),
+        ("plating_capacity_loss_Ah", "Plating capacity loss / Ah"),
+        ("plated_lithium_concentration_mol_m3", "Plated Li / mol m$^{-3}$"),
+    ]
+    if all(column in timeseries for column, _ in degradation_columns):
+        fig, axes = plt.subplots(
+            len(degradation_columns), 1, figsize=(10, 9), sharex=True, constrained_layout=True
+        )
+        for axis, (column, ylabel) in zip(axes, degradation_columns, strict=True):
+            axis.plot(timeseries["time_h"], timeseries[column])
+            axis.set_ylabel(ylabel)
+        axes[-1].set_xlabel("Time / h")
+        fig.suptitle("illustrative_unvalidated — hybrid-parameter degradation signals")
+        fig.text(
+            0.5,
+            0.5,
+            "ILLUSTRATIVE · UNVALIDATED",
+            ha="center",
+            va="center",
+            fontsize=25,
+            color="crimson",
+            alpha=0.18,
+            rotation=25,
+        )
+        fig.savefig(output_dir / "degradation.png", dpi=160)
+        plt.close(fig)
+        artifacts.append("degradation.png")
+    return artifacts
 
 
 def execute_case(case: CaseDefinition, *, output_root: Path | None = None) -> RunResult:
@@ -185,7 +225,7 @@ def execute_case(case: CaseDefinition, *, output_root: Path | None = None) -> Ru
         timeseries.to_csv(output_dir / "timeseries.csv", index=False)
         summary.to_csv(output_dir / "summary.csv", index=False)
         confidence = case.config["confidence"]
-        _plot(timeseries, output_dir, confidence)
+        plot_artifacts = _plot(timeseries, output_dir, confidence)
         manifest: dict[str, Any] = {
             "schema_version": 1,
             "run_status": "success",
@@ -211,7 +251,7 @@ def execute_case(case: CaseDefinition, *, output_root: Path | None = None) -> Ru
                 "manifest.json",
                 "timeseries.csv",
                 "summary.csv",
-                "overview.png",
+                *plot_artifacts,
                 "run.log",
             ],
         }

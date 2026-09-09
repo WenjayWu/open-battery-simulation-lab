@@ -20,6 +20,12 @@ def load_case_config(case_name: str) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_parameter_provenance() -> dict[str, Any]:
+    """Load the checked-in SEI/plating parameter borrowing allowlist."""
+    path = CONFIG_DIR / "sei_plating_parameter_provenance.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def config_hash(config: dict[str, Any]) -> str:
     """Return a stable short SHA-256 hash for a case configuration."""
     canonical = json.dumps(config, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
