@@ -38,7 +38,7 @@
 - 公开扫描：未发现凭据、私人邮箱、用户目录绝对路径；待提交范围不含 COMSOL 二进制或大型原始结果。
 - 远程发布：`main` 已推送到公开仓库；Linux CI 的冻结环境恢复、Ruff、pytest、两类 DFN 烟雾运行与 Notebook 空内核执行全部通过。
 - 科学风险：Prada2013 不包含完整的热与老化参数；SEI/析锂案例必须保持 `illustrative_unvalidated` 标签，不得作定量预测声明。
-- 当前阻塞：无；GitHub CLI 网页重新认证已完成，未读取或保存明文令牌。
+- 当前阻塞：仿真与 Git 推送无阻塞；GitHub CLI 的 API 凭据当前返回 401，后续若使用 `gh` 管理仓库需重新执行 `gh auth login --web`。公开 CI 状态徽章已核对为 passing，未读取或保存明文令牌。
 
 ## 下一步
 
