@@ -304,6 +304,10 @@ Git 不是原始实验数据或大型仿真结果的备份系统。建议将资�
 
 先确认是哪一个 Python 解释器安装了包，再使用该解释器对应的包管理方式清理。不要删除系统 Python。完成后重建项目 `.venv` 并重新运行测试。
 
+### GitHub CLI Reports 401
+
+先运行 `gh auth status --hostname github.com`。如果输出同时显示失效的 `GITHUB_TOKEN` 和有效的 keyring 账户，说明环境变量优先覆盖了钥匙串登录；应在干净终端中运行，或只在当前 PowerShell 会话移除失效变量后重试。不要用 `gh auth token` 打印令牌，也不要把令牌写进仓库配置。只有钥匙串账户本身也失效时，才执行 `gh auth login --web`。
+
 ## 16. Recovery from a New Machine
 
 恢复公开部分只需要：
