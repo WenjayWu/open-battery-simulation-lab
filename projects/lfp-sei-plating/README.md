@@ -2,6 +2,8 @@
 
 本项目使用项目级 `uv` 虚拟环境运行 PyBaMM，不依赖也不修改系统 Python。
 
+完整的接管、维护、依赖升级、结果管理和故障恢复流程见仓库根目录的 [`docs/MAINTENANCE_GUIDE.md`](../../docs/MAINTENANCE_GUIDE.md)。本项目的自动化操作边界见 [`AGENTS.md`](AGENTS.md)。所有新增文件和文件夹必须使用英文 ASCII 名称且不含空格，正文仍可使用中文。
+
 ## 环境
 
 ```powershell

@@ -44,6 +44,15 @@ desktop.ini
 *.mphbin
 *.mph.lock
 *.recovery
+COMSOL/software/
+COMSOL/installers/
+COMSOL/licenses/
+COMSOL/**/*.exe
+COMSOL/**/*.msi
+COMSOL/**/*.iso
+COMSOL/**/*.zip
+COMSOL/**/*.7z
+COMSOL/**/*.rar
 
 # Packaging/build output
 build/
