@@ -9,15 +9,15 @@
 - Windows 保存源码、配置、锁文件、测试和少量基准结果。
 - 每个 Python 项目使用自己的 `.venv`；不修改 Windows 或 Ubuntu 系统 Python。
 - Ubuntu 24.04 作为未来 Linux 求解器和大型计算的主要运行环境。
-- `COMSOL/` 只保留可公开的说明、脚本和接口；软件本体、安装包、许可证与二进制模型放在仓库之外。
+- `comsol-projects/` 只保留可公开的说明、脚本和接口；Windows 软件本体位于仓库外层预留的 `Software/COMSOL/`。
 - 第一阶段不安装 FEniCSx、MOOSE、OpenFOAM、Gmsh GUI 或 ParaView。
 - 仓库及其所有子路径使用英文 ASCII 名称；文档正文可以使用中文或双语。
 
 ## 目录
 
 ```text
-Simulation/
-├── COMSOL/                         # COMSOL 说明与公开接口（不存软件本体）
+open-battery-simulation-lab/
+├── comsol-projects/                # COMSOL 项目说明与公开接口
 ├── docs/
 │   └── MAINTENANCE_GUIDE.md        # 接管、维护、恢复与安全手册
 ├── projects/
@@ -48,7 +48,7 @@ uv run python -m lfp_lab.run --case sei_plating_demo
 
 ## 为什么部分工具使用 WSL
 
-PyBaMM 可直接在 Windows 的项目虚拟环境中稳定运行，因此第一阶段不强制使用 WSL。后续的 FEniCSx、OpenFOAM 和 MOOSE 更贴近 Linux 原生的编译、MPI、PETSc、包管理和官方测试环境；放在 WSL 可以减少平台补丁与路径兼容问题。源码仍留在 Windows 主库，小型开发直接在 Windows 完成；未来高 I/O 的大型 Linux 运行目录放在 Ubuntu 的 ext4 文件系统中，避免跨 `/mnt` 边界带来的性能损失。
+PyBaMM 可直接在 Windows 的项目虚拟环境中稳定运行，因此第一阶段不强制使用 WSL。后续的 FEniCSx、OpenFOAM 和 MOOSE 更贴近 Linux 原生的编译、MPI、PETSc、包管理和官方测试环境；放在 WSL 可以减少平台补丁与路径兼容问题。源码仍留在 Windows 主库的 `Projects/open-battery-simulation-lab/`，小型开发直接在 Windows 完成；未来高 I/O 的大型 Linux 运行目录放在 Ubuntu 的 ext4 文件系统中，避免跨 `/mnt` 边界带来的性能损失。
 
 当前 WSL2 保留 Ubuntu 24.04 与闲置的 Ubuntu 22.04。Ubuntu 24.04 的资源上限为 48 GB 内存、16 GB swap，CPU 数量保持默认；这也与 [OpenFOAM 14 的 Ubuntu 24.04 官方支持](https://openfoam.org/download/14-ubuntu/)相衔接。
 

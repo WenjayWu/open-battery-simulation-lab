@@ -44,15 +44,15 @@ desktop.ini
 *.mphbin
 *.mph.lock
 *.recovery
-COMSOL/software/
-COMSOL/installers/
-COMSOL/licenses/
-COMSOL/**/*.exe
-COMSOL/**/*.msi
-COMSOL/**/*.iso
-COMSOL/**/*.zip
-COMSOL/**/*.7z
-COMSOL/**/*.rar
+comsol-projects/software/
+comsol-projects/installers/
+comsol-projects/licenses/
+comsol-projects/**/*.exe
+comsol-projects/**/*.msi
+comsol-projects/**/*.iso
+comsol-projects/**/*.zip
+comsol-projects/**/*.7z
+comsol-projects/**/*.rar
 
 # Packaging/build output
 build/

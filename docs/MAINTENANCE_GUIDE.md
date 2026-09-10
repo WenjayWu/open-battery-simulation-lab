@@ -18,7 +18,7 @@
 在新的 Windows PowerShell 窗口中进入项目：
 
 ```powershell
-cd D:\Professional\Simulation\projects\lfp-sei-plating
+cd D:\Professional\Simulation\Projects\open-battery-simulation-lab\projects\lfp-sei-plating
 uv sync --frozen
 uv run python -c "import pybamm; print(pybamm.__version__)"
 uv run pytest -q
@@ -48,9 +48,9 @@ PyBaMM 是电池机理模型与数值求解框架，不是三维 CAD 或通用�
 ## 4. Repository Map
 
 ```text
-Simulation/
+open-battery-simulation-lab/
 ├── .github/workflows/ci.yml          # 公开仓库的持续集成检查
-├── COMSOL/                           # COMSOL 说明与可公开脚本，不存软件本体
+├── comsol-projects/                  # COMSOL 项目说明与可公开脚本
 ├── docs/
 │   └── MAINTENANCE_GUIDE.md          # 本手册
 ├── projects/
@@ -242,7 +242,7 @@ git push origin main
 
 ## 12. COMSOL Storage Policy
 
-`COMSOL/` 是仓库中的接口与说明区，不是软件安装目录。可以放入 Git 的内容包括：
+`comsol-projects/` 是仓库中的项目、接口与说明区，不是软件安装目录。Windows 软件本体在仓库外层的 `Software/COMSOL/` 预留位置。可以放入 Git 的内容包括：
 
 - 英文命名的 Markdown 说明。
 - 可公开的 Java、MATLAB 或命令行自动化脚本。
@@ -256,7 +256,7 @@ git push origin main
 - `*.mph`、`*.mphbin`、恢复目录以及大型求解结果。
 - 未获公开许可的商业模型或合作方数据。
 
-COMSOL 软件应安装在独立于仓库的标准程序目录，例如系统默认安装位置。私人二进制模型应放在单独的本地数据目录并独立备份；仓库只保留可重建说明和公开接口。这样克隆仓库不会复制软件本体，也不会因公开 GitHub 而泄露许可证或模型。
+COMSOL 软件应安装在仓库外层预留的 `Software/COMSOL/`，其内部结构由用户未来决定。私人二进制模型应放在单独的本地数据目录并独立备份；仓库只保留可重建说明和公开接口。这样克隆仓库不会复制软件本体，也不会因公开 GitHub 而泄露许可证或模型。
 
 ## 13. Windows and WSL Responsibilities
 

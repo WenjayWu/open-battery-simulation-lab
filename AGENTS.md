@@ -55,4 +55,4 @@ uv run python -m lfp_lab.run --case sei_plating_demo --quick
 - 只暂存已经审查的明确文件。
 - 提交消息使用简短英文 Conventional Commit 风格。
 - 推送前检查大文件、凭据、私人路径、COMSOL 二进制文件和原始运行结果。
-- `COMSOL/` 只保存可公开说明、脚本和小型配置；软件本体、安装包、许可证和 `*.mph` 不进入仓库。
+- `comsol-projects/` 只保存可公开说明、脚本和小型配置；软件本体、安装包、许可证和 `*.mph` 不进入仓库。
