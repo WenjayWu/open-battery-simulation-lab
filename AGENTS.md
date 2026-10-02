@@ -53,9 +53,10 @@ uv run python -m lfp_lab.run --case sei_plating_demo --quick
 ## Git and Publication
 
 - 只暂存已经审查的明确文件。
-- 提交消息遵循 Conventional Commits 精简版：`type[(scope)]: English description`；type ∈ `feat` `fix` `docs` `refactor` `perf` `test` `build` `ci` `chore` `style` `revert`；scope 可选（`fix(viewer): ...`）。
-- 面向广泛用户的项目：subject 与 body 一律使用英文；动词原形开头、不加句号。
+- 提交消息遵循 Conventional Commits 精简版：`type[(scope)]: English description`。首行 ≤ 72 字符；一个提交只做一类事，混合变更拆分。
+- 语言档位：公开档——subject 与 body 一律使用英文；动词原形开头、不加句号；body 可补充动机与影响。
+- type ∈ `feat` `fix` `docs` `refactor` `perf` `test` `build` `ci` `chore` `style` `revert`；scope 可选（`fix(viewer): ...`），限 ASCII 字母数字与 `.` `_` `/` `-`。
 - 禁止 `update:` `change:` `final:` 等模糊前缀与裸描述；禁止 `[verified]` 等流程标记写入 subject（写入 body）。
-- 豁免 git 自动生成：`Merge ...`、`Revert ...`、`fixup!`、`squash!`、`Initial commit`。
+- 豁免 git 自动生成：`Merge ...`、`Revert ...`、`fixup!`、`squash!`、裸 `Initial commit`。
 - 推送前检查大文件、凭据、私人路径、COMSOL 二进制文件和原始运行结果。
 - `comsol-projects/` 只保存可公开说明、脚本和小型配置；软件本体、安装包、许可证和 `*.mph` 不进入仓库。
